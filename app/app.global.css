@@ -1,0 +1,53 @@
+@import "~font-awesome/css/font-awesome.css";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  position: relative;
+  color: white;
+  background-color: transparent;
+  background: url('https://unsplash.it/g/1200?random') no-repeat;
+  background-size: cover;
+  font-family: Helvetica Neue, Helvetica, Arial, serif;
+  overflow-y: hidden;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+h2 {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: bold;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+
+p {
+  font-size: 18px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
