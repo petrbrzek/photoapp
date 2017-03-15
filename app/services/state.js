@@ -12,7 +12,8 @@ const defaultState = {
   files: {},
 }
 
-const getStatePath = () => path.resolve(remote.app.getPath('home'), config.HOME_DIRECTORY_NAME)
+const getStatePath = () =>
+  path.resolve(remote.app.getPath('home'), config.HOME_DIRECTORY_NAME)
 
 const loadStateSync = () => {
   fs.ensureFileSync(path.resolve(getStatePath(), config.STATE_FILE_NAME))
@@ -25,7 +26,7 @@ const loadStateSync = () => {
   return state
 }
 
-const saveStateSync = (state: any) => {
+const saveStateSync = (state: typeof defaultState) => {
   try {
     fs.outputJson(path.resolve(getStatePath(), config.STATE_FILE_NAME), state)
   } catch (error) {

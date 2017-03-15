@@ -1,8 +1,7 @@
 {
-  "name": "electron-react-boilerplate",
-  "productName": "ElectronReact",
-  "version": "0.10.0",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
+  "name": "photoapp",
+  "productName": "PhotoApp",
+  "version": "0.1.0",
   "main": "main.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 mocha --retries 2 --compilers js:babel-register --recursive --require ./test/setup.js test/**/*.spec.js",
@@ -24,14 +23,13 @@
     "package": "npm run build && build --publish never",
     "package-win": "npm run build && build --win --x64",
     "package-linux": "npm run build && build --linux",
-    "package-all": "npm run build && build -mwl",
-    "cleanup": "mop -v"
+    "package-all": "npm run build && build -mwl"
   },
   "browserslist": "electron 1.4",
   "build": {
-    "productName": "ElectronReact",
-    "appId": "org.develar.ElectronReact",
-    "category": "public.app-category.tools",
+    "productName": "PhotoApp",
+    "appId": "com.petrbrzek.PhotoApp",
+    "category": "public.app-category.photography",
     "dmg": {
       "contents": [
         {
@@ -74,27 +72,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chentsulin/electron-react-boilerplate.git"
+    "url": "git+https://github.com/petrbrzek/photoapp.git"
   },
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "Petr Brzek"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chentsulin/electron-react-boilerplate/issues"
+    "url": "https://github.com/petrbrzek/photoapp/issues"
   },
-  "keywords": [
-    "electron",
-    "boilerplate",
-    "react",
-    "react-router",
-    "flux",
-    "webpack",
-    "react-hot"
-  ],
-  "homepage": "https://github.com/chentsulin/electron-react-boilerplate#readme",
+  "homepage": "https://github.com/petrbrzek/photoapp#readme",
   "devDependencies": {
     "asar": "^0.13.0",
     "babel-core": "^6.22.1",
@@ -104,7 +91,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-tcomb": "^0.3.24",
     "babel-plugin-transform-class-properties": "^6.22.0",
-    "babel-plugin-transform-es2015-classes": "^6.22.0",
+    "babel-plugin-transform-es2015-classes": "^6.23.0",
     "babel-plugin-webpack-loaders": "^0.8.0",
     "babel-polyfill": "^6.22.0",
     "babel-preset-env": "^1.1.8",

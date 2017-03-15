@@ -1,22 +1,22 @@
 // @flow
 
-import _ from 'lodash'
-import { remote } from 'electron'
-import React, { Component } from 'react'
-import Radium, { Style } from 'radium'
-import { Link } from 'react-router'
-import FontAwesome from 'react-fontawesome'
-import Droparea from 'react-droparea'
-import path from 'path'
-import Masonry from 'react-masonry-component'
-import RaisedButton from 'material-ui/RaisedButton'
+import _ from 'lodash';
+import { remote } from 'electron';
+import React, { Component } from 'react';
+import Radium, { Style } from 'radium';
+import { Link } from 'react-router';
+import FontAwesome from 'react-fontawesome';
+import Droparea from 'react-droparea';
+import path from 'path';
+import Masonry from 'react-masonry-component';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import BottomBar from './BottomBar'
-import ImagePreview from './ImagePreview'
+import BottomBar from './BottomBar';
+import ImagePreview from './ImagePreview';
 
-import { getFileDirectoryPath } from '../services/fileManager'
+import { getFileDirectoryPath } from '../services/fileManager';
 
-const { dialog } = remote
+const { dialog } = remote;
 
 class AlbumDetail extends Component {
   state = {
@@ -27,16 +27,16 @@ class AlbumDetail extends Component {
   };
 
   componentDidMount() {
-    this._masonry.on('layoutComplete', this._handleMasonry)
+    this._masonry.on('layoutComplete', this._handleMasonry);
   }
 
   componentWillUnmount() {
-    this._masonry.off('layoutComplete', this._handleMasonry)
+    this._masonry.off('layoutComplete', this._handleMasonry);
   }
 
   _handleMasonry = () => {
     if (!this.state.showMasonry) {
-      this.setState({ showMasonry: true })
+      this.setState({ showMasonry: true });
     }
   };
 
@@ -46,37 +46,41 @@ class AlbumDetail extends Component {
         name: file.name,
         filePath: file.path,
         albumId: this.props.activeAlbum.id,
-      })
-    })
+      });
+    });
   };
 
-  _prepareFiles(filePaths) {
+  _prepareFiles(filePaths = []) {
     const files = filePaths.reduce(
       (result, filePath) => {
         result.push({
           name: path.basename(filePath),
           path: filePath,
-        })
-        return result
+        });
+        return result;
       },
       [],
-    )
-    this._addFiles(files)
+    );
+    this._addFiles(files);
   }
 
   _handleOnDrop = (e, files) => {
-    e.preventDefault()
-    this._addFiles(files)
-    this.setState({ dragActive: false })
+    e.preventDefault();
+    this._addFiles(files);
+    this.setState({ dragActive: false });
   };
 
   _handleClickSelection = id => {
-    this.setState({ selectedImage: id })
+    this.setState({ selectedImage: id });
+  };
+
+  _handleRequestHide = () => {
+    this.setState({ showPreview: false });
   };
 
   render() {
-    const album = this.props.activeAlbum
-    let files
+    const album = this.props.activeAlbum;
+    let files;
     if (album && album.files) {
       files = _.map(album.files, (value, fileNameId) => (
         <div
@@ -99,7 +103,7 @@ class AlbumDetail extends Component {
             width={200}
           />
         </div>
-      ))
+      ));
     }
 
     const rightBottomBarView = (
@@ -110,7 +114,7 @@ class AlbumDetail extends Component {
               <span>
                 <FontAwesome name="upload" style={{ color: '#fff' }} />
                 <span style={{ paddingLeft: '3px' }}>
-                  {' '}Upload new Photos
+                  {' '}Add new photos
                 </span>
               </span>
             )
@@ -125,13 +129,13 @@ class AlbumDetail extends Component {
                 ],
               },
               filePaths => {
-                this._prepareFiles(filePaths)
+                this._prepareFiles(filePaths);
               },
-            )
+            );
           }}
         />
       </div>
-    )
+    );
 
     return (
       <div
@@ -227,6 +231,7 @@ class AlbumDetail extends Component {
         </Droparea>
         {this.state.showPreview &&
           <ImagePreview
+            onRequestHide={this._handleRequestHide}
             src={path.resolve(getFileDirectoryPath(), this.state.selectedImage)}
           />}
 
@@ -234,8 +239,8 @@ class AlbumDetail extends Component {
           {rightBottomBarView}
         </BottomBar>
       </div>
-    )
+    );
   }
 }
 
-export default Radium(AlbumDetail)
+export default Radium(AlbumDetail);

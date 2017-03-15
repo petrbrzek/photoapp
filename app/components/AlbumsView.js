@@ -90,6 +90,8 @@ class AlbumsView extends Component {
   };
 
   render() {
+    console.log('is this working?');
+
     let albumContainer = <EmptyState text="Create a new album" />;
     if (this.props.albums && this.props.albums.length) {
       albumContainer = (
